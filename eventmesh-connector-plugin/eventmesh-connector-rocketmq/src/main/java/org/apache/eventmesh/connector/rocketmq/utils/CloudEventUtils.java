@@ -17,6 +17,7 @@
 
 package org.apache.eventmesh.connector.rocketmq.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.eventmesh.api.SendResult;
 import org.apache.eventmesh.common.Constants;
 
@@ -30,6 +31,7 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+@Slf4j
 public class CloudEventUtils {
 
     public static SendResult convertSendResult(
@@ -120,7 +122,7 @@ public class CloudEventUtils {
 
             message.getProperties().forEach((k, v) -> MessageAccessor.putProperty(rmqMessageExt, k, v));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("rocketmq msg convert to msgExt exception:", e);
         }
         return rmqMessageExt;
 
