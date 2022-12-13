@@ -73,7 +73,7 @@ public class EventMeshCatalogClient {
             throw e;
         }
         for (Operation operation : operations) {
-            if (!operation.getType().equals("subscribe")) {
+            if (!"subscribe".equals(operation.getType())) {
                 continue;
             }
             SubscriptionItem subscriptionItem = new SubscriptionItem();
